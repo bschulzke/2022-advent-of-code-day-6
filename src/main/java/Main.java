@@ -31,20 +31,24 @@ public class Main {
 
   }
 
-  private static String getFourLetters(String input) {
-    return readFourLetters(input, 0);
+  private static void getFourLetters(String input) {
+    readLetters(input, 0, 4);
   }
 
-  private static String readFourLetters(String input, int start) {
+  private static String readLetters(String input, int start, int numLetters) {
     if (start != 0) {
       charactersProcessed++;
     }
-    String fourLetters =
-            ("" + input.charAt(start) + input.charAt(start + 1) + input.charAt(start + 2) + input.charAt(start + 3));
-    if (noneRepeat(fourLetters)) {
-      return fourLetters;
+    StringBuilder fourLetters = new StringBuilder();
+
+    for (int i = 0; i < numLetters; i++) {
+      fourLetters.append(input.charAt(start + i));
+    }
+
+    if (noneRepeat(fourLetters.toString())) {
+      return fourLetters.toString();
     } else {
-      return readFourLetters(input, start + 1);
+      return readLetters(input, start + 1, numLetters);
     }
   }
 
@@ -59,7 +63,6 @@ public class Main {
       }
     }
     return true;
-
   }
 
 }
