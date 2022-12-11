@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class Main {
 
-  private static int charactersProcessed = 4;
+  private static int charactersProcessed;
 
   public static void main(String[] args) {
 
@@ -26,13 +26,22 @@ public class Main {
       return;
     }
 
-    getFourLetters(input);
-    System.out.println(charactersProcessed);
+    charactersProcessed = 4;
+    readFourLetters(input);
+    System.out.println("Part one: " + charactersProcessed);
+
+    charactersProcessed = 14;
+    readFourteenLetters(input);
+    System.out.println("Part two: " + charactersProcessed);
 
   }
 
-  private static void getFourLetters(String input) {
+  private static void readFourLetters(String input) {
     readLetters(input, 0, 4);
+  }
+
+  private static void readFourteenLetters(String input) {
+    readLetters(input, 0, 14);
   }
 
   private static String readLetters(String input, int start, int numLetters) {
