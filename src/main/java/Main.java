@@ -1,5 +1,7 @@
 import java.io.File;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Main {
 
@@ -24,7 +26,7 @@ public class Main {
       return;
     }
 
-    String output = getFourLetters(input);
+    getFourLetters(input);
     System.out.println(charactersProcessed);
 
   }
@@ -47,15 +49,17 @@ public class Main {
   }
 
   private static boolean noneRepeat(String input) {
-    char first = input.charAt(0);
-    char second = input.charAt(1);
-    char third = input.charAt(2);
-    char fourth = input.charAt(3);
-    if (first == second || first == third || first == fourth) {
-      return false;
-    } else if (second == third || second == fourth) {
-      return false;
-    } else return third != fourth;
+    Set<Character> usedCharacters = new HashSet<>();
+
+    for (int i = 0; i < input.length(); i++) {
+      if (usedCharacters.contains(input.charAt(i))) {
+        return false;
+      } else {
+        usedCharacters.add(input.charAt(i));
+      }
+    }
+    return true;
+
   }
 
 }
